@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.camel.go4lunch.MainFragment"
+        android:name="com.camel.go4lunch.MapViewFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_list_view" />
 </navigation>
