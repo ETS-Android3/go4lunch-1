@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -46,9 +50,8 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
 
     private FragmentLoginBinding mBinding;
 
-    public LoginFragment() {
-        // Required empty public constructor
-    }
+    public LoginFragment() { }
+
     public static LoginFragment newInstance() {
         return new LoginFragment();
     }
@@ -82,7 +85,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Debug", "onActivityResult");
+
         if (requestCode == RC_SIGN_IN) { // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
             firebaseAuthWithGoogle(data);
         } else {
@@ -92,7 +95,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     }
 
     private void navigateToMainFragment() {
-        showSnackBar("Login ok");
+        Navigation.findNavController(mBinding.getRoot()).navigate(R.id.action_loginFragment_to_mainFragment);
     }
 
     // ---------------
@@ -207,7 +210,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     // ---------------
 
     private void showSnackBar(String message){
-        Log.d("Debug", "showSnackBar: message : " + message);
+
         Snackbar.make(mBinding.loginFragmentCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
     }
 }
