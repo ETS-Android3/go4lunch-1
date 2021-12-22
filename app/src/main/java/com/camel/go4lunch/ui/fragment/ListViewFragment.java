@@ -27,7 +27,6 @@ public class ListViewFragment extends BaseFragment {
     private FragmentListViewBinding mBinding;
     private ListViewPlacesAdapter mAdapter;
 
-
     public ListViewFragment() {}
 
     public static ListViewFragment newInstance() {
@@ -47,6 +46,8 @@ public class ListViewFragment extends BaseFragment {
     }
 
     private void getPlaceResults(List<Place> places) {
+        mAdapter.updateList(places);
+    }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
