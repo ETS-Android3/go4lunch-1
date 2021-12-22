@@ -1,6 +1,6 @@
 package com.camel.go4lunch.models;
 
-public class Places {
+public class Place {
     private String uId;
     private Double latitude;
     private Double longitude;
