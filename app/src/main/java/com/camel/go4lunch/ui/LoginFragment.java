@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import androidx.annotation.Nullable;
 
 import androidx.navigation.Navigation;
@@ -67,8 +69,17 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
 
         if (isCurrentUserLoggedIn()) {
             navigateToMapFragment();
+        } else {
+            showLoginButtons();
+
         }
     }
+
+    private void showLoginButtons() {
+        alphaViewAnimation(mBinding.loginActivityFirebaseAuthGoogleBtn);
+        alphaViewAnimation(mBinding.loginActivityFrameLayoutFacebookButton.loginActivityFirebaseAuthFacebookBtn);
+    }
+
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -234,4 +245,12 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
 
         Snackbar.make(mBinding.loginFragmentCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
     }
+
+    private void alphaViewAnimation(View view){
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(1000);
+        animation.setStartOffset(500);
+        view.setAnimation(animation);
+    }
+
 }
