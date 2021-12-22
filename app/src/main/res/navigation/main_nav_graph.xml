@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/map_view_fragment"
-        android:name="com.camel.go4lunch.ui.MapViewFragment"
+        android:name="com.camel.go4lunch.ui.fragment.MapViewFragment"
         android:label="@string/i_m_hungry"
         tools:layout="@layout/fragment_map_view"/>
 
