@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/drawable-anydpi/ic_list_view.xml" value="0.3921875" />
         <entry key="app/src/main/res/drawable-anydpi/ic_logout.xml" value="0.3921875" />
         <entry key="app/src/main/res/drawable-anydpi/ic_lunch.xml" value="0.3921875" />
