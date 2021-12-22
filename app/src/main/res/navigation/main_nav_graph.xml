@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/login_fragment"
-        android:name="com.camel.go4lunch.LoginFragment"
+        android:name="com.camel.go4lunch.ui.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
