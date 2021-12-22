@@ -104,8 +104,8 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     }
 
     private void showLoginButtons() {
-        alphaViewAnimation(mBinding.loginActivityFirebaseAuthGoogleBtn);
-        alphaViewAnimation(mBinding.loginActivityFrameLayoutFacebookButton.loginActivityFirebaseAuthFacebookBtn);
+        alphaViewAnimation(mBinding.loginFragmentFirebaseAuthGoogleBtn);
+        alphaViewAnimation(mBinding.loginFragmentFrameLayoutFacebookButton.frameFirebaseAuthFacebookBtn);
     }
 
 
@@ -130,14 +130,14 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     // ---------------
 
     private void configureGoogleSignIn() {
-        mBinding.loginActivityFirebaseAuthGoogleBtn.setOnClickListener(v -> signInWithGoogle());
+        mBinding.loginFragmentFirebaseAuthGoogleBtn.setOnClickListener(v -> signInWithGoogle());
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.google_request_id_token))
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
     }
 
     private void signInWithGoogle() {
@@ -153,7 +153,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
             if (account != null) {
                 AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
                 getAuth().signInWithCredential(credential)
-                        .addOnCompleteListener(getActivity(), taskComplete -> {
+                        .addOnCompleteListener(requireActivity(), taskComplete -> {
                             if (taskComplete.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 createUserInFireStore();
@@ -187,12 +187,12 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     // ---------------
 
     private void configureFacebookSignIn() {
-        mBinding.loginActivityFrameLayoutFacebookButton.loginActivityFirebaseAuthFacebookBtn.setOnClickListener(
-                v -> mBinding.loginActivityFrameLayoutFacebookButton.loginActivityFacebookLoginButton.performClick());
+        mBinding.loginFragmentFrameLayoutFacebookButton.frameFirebaseAuthFacebookBtn.setOnClickListener(
+                v -> mBinding.loginFragmentFrameLayoutFacebookButton.frameFacebookLoginButton.performClick());
 
         mCallbackManager = CallbackManager.Factory.create();
 
-        LoginButton loginButton = mBinding.loginActivityFrameLayoutFacebookButton.loginActivityFacebookLoginButton;
+        LoginButton loginButton = mBinding.loginFragmentFrameLayoutFacebookButton.frameFacebookLoginButton;
         loginButton.setPermissions(Arrays.asList("email", "public_profile"));
         loginButton.setFragment(this);
         loginButton.registerCallback(mCallbackManager, this);
@@ -210,7 +210,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
 
     @Override
     public void onError(FacebookException error) {
-        if(error.getMessage().equals(getString(R.string.error_facebook_connection_failure))) {
+        if(Objects.equals(error.getMessage(), getString(R.string.error_facebook_connection_failure))) {
             showSnackBar(getString(R.string.error_no_internet));
         } else {
             showSnackBar(getString(R.string.error_unknown_error));
@@ -221,7 +221,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         getAuth().signInWithCredential(credential)
-                .addOnCompleteListener(getActivity(), task -> {
+                .addOnCompleteListener(requireActivity(), task -> {
                     if (task.isSuccessful()) {
                         // Sign in success
                         createUserInFireStore();
@@ -256,6 +256,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
             navigateToMapFragment();
         } else {
             showSnackBar(getString(R.string.error_unknown_error));
+            assert result.getException() != null;
             Log.d("Debug", "onFirestoreResult : " + result.getException().toString());
         }
     }
