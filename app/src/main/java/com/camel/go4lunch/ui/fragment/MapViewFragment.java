@@ -3,13 +3,11 @@ package com.camel.go4lunch.ui.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,8 +17,8 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.VisibleRegion;
@@ -55,8 +53,6 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     private MapViewFragmentViewModel mViewModel;
     private SharedViewModel mSharedViewModel;
 
-    private FragmentMapViewBinding mBinding;
-
     private FusedLocationProviderClient mFusedLocationClient;
     private GoogleMap mMap;
 
@@ -90,23 +86,24 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mBinding = FragmentMapViewBinding.inflate(getLayoutInflater());
-        mBinding.mapViewFragmentLocationBtn.setOnClickListener(v -> requestFocusToLocation());
+        FragmentMapViewBinding binding = FragmentMapViewBinding.inflate(getLayoutInflater());
+        binding.mapViewFragmentLocationBtn.setOnClickListener(v -> requestFocusToLocation());
 
         configureMaps();
         configureLocation();
 
-        return mBinding.getRoot();
+        return binding.getRoot();
     }
 
     private void configureMaps() {
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_view_fragment_map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
     private void configureLocation(){
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());
 
     }
 
@@ -114,7 +111,7 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnCameraIdleListener(this);
-        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+        mMap.getUiSettings().setMapToolbarEnabled(false);
         getSavedData();
         enableLocation();
     }
@@ -133,9 +130,9 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     // ---------------
 
     private void requestFocusToLocation(){
-        if (mPermissionDenied && EasyPermissions.somePermissionPermanentlyDenied(getActivity(), Collections.singletonList(ACCESS_FINE_LOCATION))) {
+        if (mPermissionDenied && EasyPermissions.somePermissionPermanentlyDenied(requireActivity(), Collections.singletonList(ACCESS_FINE_LOCATION))) {
             new AppSettingsDialog.Builder(this).build().show();
-        } else if(EasyPermissions.hasPermissions(getActivity(), ACCESS_FINE_LOCATION)) {
+        } else if(EasyPermissions.hasPermissions(requireActivity(), ACCESS_FINE_LOCATION)) {
             focusToLocation();
         } else {
             requestPermission();
@@ -189,6 +186,7 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
             mMap.addMarker(new MarkerOptions()
                     .position(latLng)
                     .title(place.getName())
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_pin_normal))
             );
         }
     }
@@ -200,7 +198,7 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     @SuppressLint("MissingPermission")
     @AfterPermissionGranted(RC_LOCATION)
     private void enableLocation() {
-        if (EasyPermissions.hasPermissions(getActivity(), ACCESS_FINE_LOCATION)) {
+        if (EasyPermissions.hasPermissions(requireActivity(), ACCESS_FINE_LOCATION)) {
             mPermissionDenied = false;
             mMap.setMyLocationEnabled(true);
 
@@ -240,7 +238,7 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE && EasyPermissions.hasPermissions(getActivity(), ACCESS_FINE_LOCATION)) {
+        if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE && EasyPermissions.hasPermissions(requireActivity(), ACCESS_FINE_LOCATION)) {
             mPermissionDenied = false;
             enableLocation();
         }
