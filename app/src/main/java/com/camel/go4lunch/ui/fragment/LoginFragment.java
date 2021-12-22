@@ -38,6 +38,7 @@ import com.camel.go4lunch.databinding.FragmentLoginBinding;
 import com.camel.go4lunch.injection.Injection;
 import com.camel.go4lunch.injection.ViewModelFactory;
 import com.camel.go4lunch.models.Workmate;
+import com.camel.go4lunch.ui.SharedViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -52,6 +53,7 @@ import static com.google.android.gms.common.api.CommonStatusCodes.TIMEOUT;
 public class LoginFragment extends BaseFragment implements FacebookCallback<LoginResult> {
     private static final int RC_SIGN_IN = 1000;
 
+    private SharedViewModel mSharedViewModel;
     private LoginFragmentViewModel mViewModel;
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -68,12 +70,13 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        configureViewModel();
+        configureViewModels();
     }
 
-    private void configureViewModel() {
+    private void configureViewModels() {
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory();
         mViewModel = new ViewModelProvider(this, viewModelFactory).get(LoginFragmentViewModel.class);
+        mSharedViewModel = new ViewModelProvider(this, viewModelFactory).get(SharedViewModel.class);
         mViewModel.observeResult().observe(this, this::firestoreResultObserver);
     }
 
@@ -122,6 +125,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     }
 
     private void navigateToMapFragment() {
+        mSharedViewModel.setUserLogged(true);
         Navigation.findNavController(mBinding.getRoot()).navigate(R.id.action_login_fragment_to_map_view_fragment);
     }
 
