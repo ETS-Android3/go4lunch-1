@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Toolbar theme. -->
     <style name="DrawerMenu" parent="Widget.Design.NavigationView">
         <item name="itemTextColor">@android:color/white</item>
         <item name="itemIconTint">@android:color/white</item>
     </style>
-
-
 </resources>

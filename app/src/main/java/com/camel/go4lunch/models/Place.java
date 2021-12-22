@@ -1,13 +1,20 @@
 package com.camel.go4lunch.models;
 
-import com.camel.go4lunch.models.GooglePlaceResult.OpeningHours;
+import com.camel.go4lunch.models.PlaceDetailsResult.OpeningHours;
 
 public class Place {
 
-    private String mUId;
+    private final String mUId;
     private Double mLatitude;
     private Double mLongitude;
     private String mName;
+    private String mAddress;
+    private String mPhotoReference;
+    private String mPhoneNumber;
+    private String mWebsite;
+    private float mRating;
+    private int mWorkmatesInterested;
+    private int mDistanceFromUser;
     private OpeningHours mOpeningHours;
 
     public Place(String placeId, String name) {
@@ -43,6 +50,39 @@ public class Place {
             mName = name;
             }
 
+    public String getAddress() {
+        return mAddress;
+    }
+
+    public void setAddress(String address) {
+        mAddress = address;
+    }
+
+    public float getRating() {
+        return mRating;
+    }
+
+    public void setRating(float rating) {
+        mRating = rating;
+    }
+
+    public int getWorkmatesInterested() {
+        return mWorkmatesInterested;
+    }
+
+    public void setWorkmatesInterested(int workmatesInterested) {
+        mWorkmatesInterested = workmatesInterested;
+    }
+
+    public int getDistanceFromUser() {
+        return mDistanceFromUser;
+    }
+
+    public void setDistanceFromUser(int distanceFromUser) {
+        mDistanceFromUser = distanceFromUser;
+    }
+
+
     public OpeningHours getOpeningHours() {
             return mOpeningHours;
             }
@@ -50,4 +90,28 @@ public class Place {
     public void setOpeningHours(OpeningHours openingHours) {
             mOpeningHours = openingHours;
             }
+
+    public String getPhoneNumber() {
+        return mPhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        mPhoneNumber = phoneNumber;
+    }
+
+    public String getWebsite() {
+        return mWebsite;
+    }
+
+    public void setWebsite(String website) {
+        mWebsite = website;
+    }
+
+    public String getPhotoReference() {
+        return mPhotoReference;
+    }
+
+    public void setPhotoReference(String photoReference) {
+        mPhotoReference = photoReference;
+    }
 }

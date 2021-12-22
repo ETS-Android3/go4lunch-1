@@ -1,10 +1,10 @@
-package com.camel.go4lunch.models.GooglePlaceResult;
+package com.camel.go4lunch.models.PlaceResult;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Northeast {
+public class Southwest {
 
     @SerializedName("lat")
     @Expose

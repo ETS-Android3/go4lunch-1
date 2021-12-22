@@ -9,7 +9,6 @@ import com.camel.go4lunch.repositories.WorkmatesDataRepository;
 import com.camel.go4lunch.ui.MainViewModel;
 import com.camel.go4lunch.ui.SharedViewModel;
 import com.camel.go4lunch.ui.fragment.LoginViewModel;
-import com.camel.go4lunch.ui.fragment.MapViewViewModel;
 
 import java.util.concurrent.Executor;
 
@@ -40,9 +39,6 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         }
         else if(modelClass.isAssignableFrom(MainViewModel.class)){
             return (T) new MainViewModel(mWorkmatesDataRepository);
-        }
-        else if(modelClass.isAssignableFrom(MapViewViewModel.class)){
-            return (T) new MapViewViewModel(mPlacesDataRepository, mExecutor);
         }
         throw new IllegalArgumentException("Unknown ViewModel Class");
     }

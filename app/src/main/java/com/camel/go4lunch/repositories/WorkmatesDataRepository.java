@@ -1,12 +1,7 @@
 package com.camel.go4lunch.repositories;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.camel.go4lunch.api.FirestoreResult;
 import com.camel.go4lunch.api.WorkmateHelper;
 import com.camel.go4lunch.models.Workmate;

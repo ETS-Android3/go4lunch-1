@@ -1,4 +1,4 @@
-package com.camel.go4lunch.models.GooglePlaceResult;
+package com.camel.go4lunch.models.PlaceResult;
 
 
 import java.util.List;

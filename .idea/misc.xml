@@ -23,7 +23,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37025641025641026" />
         <entry key="app/src/main/res/layout/activity_main_drawer_header.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_list_view.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/fragment_list_view_place_item.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_list_view_place_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_map_view.xml" value="0.37604166666666666" />
