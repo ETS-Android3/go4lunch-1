@@ -47,9 +47,7 @@ dependencies {
 
     // Navigation Component
     def nav_version = "2.3.3"
-    //noinspection GradleDependency
     implementation "androidx.navigation:navigation-fragment:$nav_version"
-    //noinspection GradleDependency
     implementation "androidx.navigation:navigation-ui:$nav_version"
 
     // Google Sign-In
