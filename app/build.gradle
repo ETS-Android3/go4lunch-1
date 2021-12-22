@@ -30,8 +30,8 @@ android {
         }
         debug {
 
-            buildConfigField("String", "MAPS_API_KEY", "\"${mapApiKey}\"")
-            resValue("string", "maps_api_key", "${mapApiKey}")
+            buildConfigField("String", "MAPS_API_KEY", "AIzaSyDcx6HVKHLNJNxj6zry3H4WW1MYMELRg2Q")
+            resValue("string", "maps_api_key", "AIzaSyDcx6HVKHLNJNxj6zry3H4WW1MYMELRg2Q")
         }
     }
     compileOptions {
