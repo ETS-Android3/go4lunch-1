@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.camel.go4lunch.repositories.WorkmatesDataRepository;
-import com.camel.go4lunch.ui.LoginFragmentViewModel;
+import com.camel.go4lunch.ui.fragment.LoginFragmentViewModel;
 
 import java.util.concurrent.Executor;
 

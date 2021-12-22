@@ -1,4 +1,4 @@
-package com.camel.go4lunch.ui;
+package com.camel.go4lunch.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import com.camel.go4lunch.BaseFragment;
 import com.camel.go4lunch.R;
 
-public class ListViewFragment extends BaseFragment {
+public class WorkmatesFragment extends BaseFragment {
 
-    public ListViewFragment() {}
+    public WorkmatesFragment() {}
 
-    public static ListViewFragment newInstance() {
-        return new ListViewFragment();
+    public static WorkmatesFragment newInstance() {
+        return new WorkmatesFragment();
     }
 
     @Override
@@ -25,6 +25,6 @@ public class ListViewFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_view, container, false);
+        return inflater.inflate(R.layout.fragment_workmates, container, false);
     }
 }

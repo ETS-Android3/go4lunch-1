@@ -1,4 +1,4 @@
-package com.camel.go4lunch.ui;
+package com.camel.go4lunch.ui.fragment;
 
 import android.os.Bundle;
 import android.content.Intent;
