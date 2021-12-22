@@ -7,11 +7,11 @@ import com.camel.go4lunch.models.Workmate;
 import com.camel.go4lunch.repositories.WorkmatesDataRepository;
 
 
-public class MainActivityViewModel extends ViewModel {
+public class MainViewModel extends ViewModel {
 
     private final WorkmatesDataRepository mWorkmatesDataRepository;
 
-    public MainActivityViewModel(WorkmatesDataRepository workmatesDataRepository) {
+    public MainViewModel(WorkmatesDataRepository workmatesDataRepository) {
         this.mWorkmatesDataRepository = workmatesDataRepository;
     }
 

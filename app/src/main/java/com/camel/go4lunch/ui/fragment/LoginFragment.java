@@ -54,7 +54,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
     private static final int RC_SIGN_IN = 1000;
 
     private SharedViewModel mSharedViewModel;
-    private LoginFragmentViewModel mViewModel;
+    private LoginViewModel mViewModel;
 
     private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager mCallbackManager;
@@ -75,7 +75,7 @@ public class LoginFragment extends BaseFragment implements FacebookCallback<Logi
 
     private void configureViewModels() {
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory();
-        mViewModel = new ViewModelProvider(this, viewModelFactory).get(LoginFragmentViewModel.class);
+        mViewModel = new ViewModelProvider(this, viewModelFactory).get(LoginViewModel.class);
         mSharedViewModel = new ViewModelProvider(this, viewModelFactory).get(SharedViewModel.class);
         mViewModel.observeResult().observe(this, this::firestoreResultObserver);
     }

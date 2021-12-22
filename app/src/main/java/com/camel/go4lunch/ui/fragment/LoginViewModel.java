@@ -10,12 +10,12 @@ import com.camel.go4lunch.repositories.WorkmatesDataRepository;
 
 import java.util.concurrent.Executor;
 
-public class LoginFragmentViewModel extends ViewModel {
+public class LoginViewModel extends ViewModel {
 
     private final WorkmatesDataRepository mWorkmatesDataRepository;
     private final Executor mExecutor;
 
-    public LoginFragmentViewModel(WorkmatesDataRepository workmatesDataRepository, Executor executor) {
+    public LoginViewModel(WorkmatesDataRepository workmatesDataRepository, Executor executor) {
         mWorkmatesDataRepository = workmatesDataRepository;
         mExecutor = executor;
     }
