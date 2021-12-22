@@ -29,8 +29,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserInfo;
-import com.camel.go4lunch.BaseFragment;
-import com.camel.go4lunch.R;
 import com.camel.go4lunch.api.WorkmateHelper;
 import com.camel.go4lunch.databinding.FragmentLoginBinding;
 
