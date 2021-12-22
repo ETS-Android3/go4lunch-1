@@ -28,10 +28,4 @@ public abstract class BaseFragment extends Fragment {
         return getCurrentUser() != null;
     }
 
-    protected OnFailureListener onFailureListener(){
-        return e -> {
-            Toast.makeText(getApplicationContext(), getString(R.string.error_unknown_error), Toast.LENGTH_LONG).show();
-            Log.d("Debug", "onFailureListener: e.toString() : " + e.toString());
-        };
-    }
 }
