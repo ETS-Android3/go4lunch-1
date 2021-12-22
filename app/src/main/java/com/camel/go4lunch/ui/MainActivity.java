@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,6 +14,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.auth.FirebaseUser;
+import com.camel.go4lunch.databinding.ActivityMainDrawerHeaderBinding;
+import com.camel.go4lunch.injection.Injection;
+import com.camel.go4lunch.injection.ViewModelFactory;
+import com.camel.go4lunch.models.Workmate;
+import com.camel.go4lunch.ui.fragment.LoginFragmentViewModel;
 
 import com.camel.go4lunch.R;
 import com.facebook.login.LoginManager;
@@ -23,7 +35,9 @@ import com.camel.go4lunch.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    private MainActivityViewModel mViewModel;
     private ActivityMainBinding mBinding;
+    private ActivityMainDrawerHeaderBinding mHeaderBinding;
 
     private NavController mNavController;
     private BottomNavigationView mBottomNavigationView;
@@ -38,10 +52,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View view = mBinding.getRoot();
         setContentView(view);
 
+        View headerView = mBinding.activityMainNavView.getHeaderView(0);
+        mHeaderBinding = ActivityMainDrawerHeaderBinding.bind(headerView);
+
+        configureViewModel();
         configureNavController();
         configureBottomNavigation();
         configureToolbar();
         configureNavControllerListener();
+    }
+
+    private void configureViewModel() {
+        ViewModelFactory viewModelFactory = Injection.provideViewModelFactory();
+        mViewModel = new ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel.class);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mViewModel.getWorkmateWithId(user.getUid()).observe(this, this::workmateObserver);
+    }
+
+    private void workmateObserver(Workmate workmate){
+        updateDrawerHeader(workmate);
     }
 
     private void configureNavController() {
@@ -92,6 +121,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mBottomNavigationView.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    private void updateDrawerHeader(Workmate workmate) {
+        Glide.with(this).load(workmate.getPictureUrl()).apply(RequestOptions.circleCropTransform()).into(mHeaderBinding.drawerProfilePicIv);
+        mHeaderBinding.drawerNameTv.setText(workmate.getUserName());
+        mHeaderBinding.drawerEmailTv.setText(workmate.getEmail());
     }
 
     @Override

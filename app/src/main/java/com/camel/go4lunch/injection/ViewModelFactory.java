@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.camel.go4lunch.repositories.WorkmatesDataRepository;
+import com.camel.go4lunch.ui.MainActivityViewModel;
 import com.camel.go4lunch.ui.fragment.LoginFragmentViewModel;
 
 import java.util.concurrent.Executor;
@@ -22,9 +23,14 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 
     @NonNull
     @Override
+    @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if(modelClass.isAssignableFrom(LoginFragmentViewModel.class)){
             return (T) new LoginFragmentViewModel(mWorkmatesDataRepository, executor);
-        } throw new IllegalArgumentException("Unknown ViewModel Class");
+        }
+        else if(modelClass.isAssignableFrom(MainActivityViewModel.class)){
+            return (T) new MainActivityViewModel(mWorkmatesDataRepository);
+        }
+        throw new IllegalArgumentException("Unknown ViewModel Class");
     }
 }

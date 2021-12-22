@@ -6,7 +6,7 @@
     <string name="fb_login_protocol_scheme" tools.ignore="UnusedResources">fb320048656631281</string>
 
     <!-- App -->
-    <string name="app_name">go4lunch</string>
+    <string name="app_name">Go4Lunch</string>
 
     <!-- Login activity -->
     <string name="login">Login</string>
