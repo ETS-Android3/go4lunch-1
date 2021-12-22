@@ -3,6 +3,7 @@ package com.camel.go4lunch.ui.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +24,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.VisibleRegion;
 import com.google.maps.android.SphericalUtil;
-
 import com.camel.go4lunch.BaseFragment;
 import com.camel.go4lunch.R;
-
 import com.camel.go4lunch.databinding.FragmentMapViewBinding;
 import com.camel.go4lunch.injection.Injection;
 import com.camel.go4lunch.injection.ViewModelFactory;
-import com.camel.go4lunch.models.GooglePlaceResult.GooglePlaceResults;
-import com.camel.go4lunch.models.GooglePlaceResult.Result;
+import com.camel.go4lunch.models.Place;
 import com.camel.go4lunch.ui.SharedViewModel;
 
 import org.jetbrains.annotations.NotNull;
@@ -49,6 +47,7 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
 
     private static final int RC_LOCATION = 1;
     private static final float DEFAULT_ZOOM = 16;
+    private static final String RESTAURANT = "restaurant";
 
     private MapViewViewModel mViewModel;
     private SharedViewModel mSharedViewModel;
@@ -80,12 +79,11 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         mViewModel = new ViewModelProvider(this, viewModelFactory).get(MapViewViewModel.class);
         mSharedViewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(SharedViewModel.class);
 
-        mSharedViewModel.getGooglePlaceList().observe(this, this::getGooglePlaceResults);
+        mSharedViewModel.getPlaceList().observe(this, this::getGooglePlaceResults);
     }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         FragmentMapViewBinding binding = FragmentMapViewBinding.inflate(getLayoutInflater());
         binding.mapViewFragmentLocationBtn.setOnClickListener(v -> requestFocusToLocation());
 
@@ -96,28 +94,27 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
     private void configureMaps() {
-
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_view_fragment_map);
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
+
     private void configureLocation(){
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());
-
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnCameraIdleListener(this);
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
         mMap.getUiSettings().setMapToolbarEnabled(false);
         getSavedData();
         enableLocation();
     }
 
     private void getSavedData() {
-        if(mSharedViewModel.isMapViewDataSet()) {
+        if(mSharedViewModel.isMapViewDataSet()){
             focusCamera(mSharedViewModel.getMapViewCameraLatitude(),
                     mSharedViewModel.getMapViewCameraLongitude(),
                     mSharedViewModel.getMapViewCameraZoom(),
@@ -163,9 +160,8 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     // Places
     // ---------------
 
-
     private void getNearbyPlaces(String latlng) {
-        mSharedViewModel.getNearbyPlaces(latlng, String.valueOf(getMapSize()), "restaurant");
+        mSharedViewModel.getNearbyPlaces(latlng, String.valueOf(getMapSize()), RESTAURANT);
     }
 
     @Override
@@ -179,11 +175,10 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         getNearbyPlaces(lat + "," + lng);
     }
 
-
-    private void getGooglePlaceResults(GooglePlaceResults googlePlacesResults) {
+    private void getGooglePlaceResults(List<Place> placeList) {
         if(mMap!=null) {
-            for (Result place : googlePlacesResults.getResults()) {
-                LatLng latLng = new LatLng(place.getGeometry().getLocation().getLat(), place.getGeometry().getLocation().getLng());
+            for (Place place : placeList) {
+                LatLng latLng = new LatLng(place.getLatitude(), place.getLongitude());
                 mMap.addMarker(new MarkerOptions()
                         .position(latLng)
                         .title(place.getName())
@@ -216,9 +211,6 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         EasyPermissions.requestPermissions(this, getString(R.string.permission_rationale_location), RC_LOCATION, ACCESS_FINE_LOCATION);
     }
 
-
-
-
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         mPermissionDenied = false;
@@ -228,7 +220,6 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         mPermissionDenied = true;
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
@@ -259,6 +250,7 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         mSharedViewModel.setMapViewDataSet(true);
     }
 
+
     // ---------------
     // Utils
     // ---------------
@@ -267,5 +259,4 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         VisibleRegion visibleRegion = mMap.getProjection().getVisibleRegion();
         return SphericalUtil.computeDistanceBetween(visibleRegion.farLeft, mMap.getCameraPosition().target);
     }
-
 }

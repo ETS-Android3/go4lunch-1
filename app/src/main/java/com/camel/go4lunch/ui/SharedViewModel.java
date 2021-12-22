@@ -1,15 +1,15 @@
 package com.camel.go4lunch.ui;
 
-
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import androidx.lifecycle.ViewModel;
 
-import com.camel.go4lunch.models.GooglePlaceResult.GooglePlaceResults;
+import com.camel.go4lunch.models.Place;
 import com.camel.go4lunch.repositories.PlacesDataRepository;
+
+import java.util.List;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
@@ -17,17 +17,14 @@ import io.reactivex.observers.DisposableObserver;
 
 public class SharedViewModel extends ViewModel {
 
-    // -------------
     // For MainActivity
-    // -------------
-
     private MutableLiveData<Boolean> userLogged;
 
     // For List and Map View
     PlacesDataRepository mPlacesDataRepository;
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
-    private final MutableLiveData<GooglePlaceResults> mGooglePlaceList;
+    private final MutableLiveData<List<Place>> mPlaceList;
 
     // For Map View
     private double mapViewCameraLatitude;
@@ -38,8 +35,7 @@ public class SharedViewModel extends ViewModel {
     public SharedViewModel(PlacesDataRepository placesDataRepository) {
         mPlacesDataRepository = placesDataRepository;
 
-        mGooglePlaceList = new MutableLiveData<>();
-
+        mPlaceList = new MutableLiveData<>();
         userLogged = new MutableLiveData<>();
     }
 
@@ -59,14 +55,12 @@ public class SharedViewModel extends ViewModel {
     // For List and Map View
     // -------------
 
-
-
     public void getNearbyPlaces(String latlng, String radius, String type) {
         mDisposable.add(mPlacesDataRepository.getNearbyPlaces(latlng, radius, type)
-                .subscribeWith(new DisposableObserver<GooglePlaceResults>() {
+                .subscribeWith(new DisposableObserver<List<Place>>() {
                     @Override
-                    public void onNext(@NonNull GooglePlaceResults googlePlacesResults) {
-                        mGooglePlaceList.postValue(googlePlacesResults);
+                    public void onNext(@NonNull List<Place> placeList) {
+                        mPlaceList.postValue(placeList);
                     }
 
                     @Override
@@ -80,13 +74,14 @@ public class SharedViewModel extends ViewModel {
                 }));
     }
 
-    public MutableLiveData<GooglePlaceResults> getGooglePlaceList() {
-        return mGooglePlaceList;
+    public MutableLiveData<List<Place>> getPlaceList() {
+        return mPlaceList;
     }
 
     // -------------
     // For MapView
     // -------------
+
 
     public double getMapViewCameraLatitude() {
         return mapViewCameraLatitude;
