@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "1055993548731",
-    "project_id": "go4lunch-334306",
-    "storage_bucket": "go4lunch-334306.appspot.com"
+    "project_number": "715011662105",
+    "project_id": "go4lunch-8d578",
+    "storage_bucket": "go4lunch-8d578.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1055993548731:android:c4e57f264f292dec9a3e9e",
+        "mobilesdk_app_id": "1:715011662105:android:47bd17192bc4aefea62588",
         "android_client_info": {
           "package_name": "com.camel.go4lunch"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1055993548731-gh21o7t9rbd4i4p47i20mmubvp9l2qk1.apps.googleusercontent.com",
+          "client_id": "715011662105-nad1gcvn3dbkj49mrhedc2qiraeab4al.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.camel.go4lunch",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "1055993548731-ekf5288em0hoffv0nsmqus0p7fv6oni0.apps.googleusercontent.com",
+          "client_id": "715011662105-q1oddh3r0haahvbdlbs1ion5b5tkmj5b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDW7FBEuUkqC4-QQgLRu-js6h4yBGdFhTM"
+          "current_key": "AIzaSyBM68NuFYEuEiAmlXzv7i04Z3Um0-bWxrk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1055993548731-ekf5288em0hoffv0nsmqus0p7fv6oni0.apps.googleusercontent.com",
+              "client_id": "715011662105-q1oddh3r0haahvbdlbs1ion5b5tkmj5b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

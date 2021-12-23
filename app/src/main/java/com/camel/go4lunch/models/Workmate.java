@@ -1,78 +1,185 @@
 package com.camel.go4lunch.models;
 
+import com.google.firebase.firestore.Exclude;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class Workmate {
-    private String uId;
-    private String userName;
+public class Workmate implements Comparable<Workmate>{
+    private String mUId;
+    private String mFullName;
+    private String mNickname;
     @Nullable
-    private String email;
+    private String mEmail;
     @Nullable
-    private String pictureUrl;
+    private String mPictureUrl;
 
-    private String chosenRestaurantId;
-    private Date lastChosenRestaurantDate;
+    private String mChosenRestaurantId = "";
+    private String mChosenRestaurantName = "";
+    private Date mChosenRestaurantDate;
+
+    private List<String> mLikedRestaurants = new ArrayList<>();
+
+    // For Ui
+    @Exclude private int mWorkmateChosenTvVisibility;
+    @Exclude private int mWorkmateNotChosenTvVisibility;
+    @Exclude private int mWorkmateGoFabColor;
+    @Exclude private int mWorkmateLikedRestaurantTvText;
+    @Exclude private int mWorkmateLikedRestaurantTvColor;
 
     public Workmate() {
     }
 
-    public Workmate(String uId, String userName, @Nullable String email, @Nullable String pictureUrl) {
-        this.uId = uId;
-        this.userName = userName;
-        this.email = email;
-        this.pictureUrl = pictureUrl;
+    public Workmate(String uId,
+                    String fullName,
+                    String nickname,
+                    @Nullable String email,
+                    @Nullable String pictureUrl) {
+        mUId = uId;
+        mFullName = fullName;
+        mNickname = nickname;
+        mEmail = email;
+        mPictureUrl = pictureUrl;
     }
 
-    public String getuId() {
-        return uId;
+    public String getUId() {
+        return mUId;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId;
+    public void setUId(String uId) {
+        mUId = uId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFullName() {
+        return mFullName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFullName(String fullName) {
+        mFullName = fullName;
+    }
+
+    public String getNickname() {
+        return mNickname;
+    }
+
+    public void setNickname(String nickname) {
+        mNickname = nickname;
     }
 
     @Nullable
     public String getEmail() {
-        return email;
+        return mEmail;
     }
 
     public void setEmail(@Nullable String email) {
-        this.email = email;
+        mEmail = email;
     }
 
     @Nullable
     public String getPictureUrl() {
-        return pictureUrl;
+        return mPictureUrl;
     }
 
     public void setPictureUrl(@Nullable String pictureUrl) {
-        this.pictureUrl = pictureUrl;
+        mPictureUrl = pictureUrl;
     }
 
     public String getChosenRestaurantId() {
-        return chosenRestaurantId;
+        return mChosenRestaurantId;
     }
 
     public void setChosenRestaurantId(String chosenRestaurantId) {
-        this.chosenRestaurantId = chosenRestaurantId;
+        mChosenRestaurantId = chosenRestaurantId;
     }
 
-    public Date getLastChosenRestaurantDate() {
-        return lastChosenRestaurantDate;
+    public Date getChosenRestaurantDate() {
+        return mChosenRestaurantDate;
     }
 
-    public void setLastChosenRestaurantDate(Date lastChosenRestaurantDate) {
-        this.lastChosenRestaurantDate = lastChosenRestaurantDate;
+    public void setChosenRestaurantDate(Date chosenRestaurantDate) {
+        mChosenRestaurantDate = chosenRestaurantDate;
+    }
+
+    public String getChosenRestaurantName() {
+        return mChosenRestaurantName;
+    }
+
+    public void setChosenRestaurantName(String chosenRestaurantName) {
+        mChosenRestaurantName = chosenRestaurantName;
+    }
+
+    public List<String> getLikedRestaurants() {
+        return mLikedRestaurants;
+    }
+
+    public void setLikedRestaurants(List<String> likedRestaurants) {
+        mLikedRestaurants = likedRestaurants;
+    }
+
+    @Exclude
+    public int getWorkmateChosenTvVisibility() {
+        return mWorkmateChosenTvVisibility;
+    }
+
+    @Exclude
+    public void setWorkmateChosenTvVisibility(int workmateChosenTvVisibility) {
+        mWorkmateChosenTvVisibility = workmateChosenTvVisibility;
+    }
+
+    @Exclude
+    public int getWorkmateNotChosenTvVisibility() {
+        return mWorkmateNotChosenTvVisibility;
+    }
+
+    @Exclude
+    public void setWorkmateNotChosenTvVisibility(int workmateNotChosenTvVisibility) {
+        mWorkmateNotChosenTvVisibility = workmateNotChosenTvVisibility;
+    }
+
+    @Exclude
+    public int getWorkmateGoFabColor() {
+        return mWorkmateGoFabColor;
+    }
+
+    @Exclude
+    public void setWorkmateGoFabColor(int workmateGoFabColor) {
+        mWorkmateGoFabColor = workmateGoFabColor;
+    }
+
+    @Exclude
+    public int getWorkmateLikedRestaurantTvText() {
+        return mWorkmateLikedRestaurantTvText;
+    }
+
+    @Exclude
+    public void setWorkmateLikedRestaurantTvText(int workmateLikedRestaurantTvText) {
+        mWorkmateLikedRestaurantTvText = workmateLikedRestaurantTvText;
+    }
+
+    @Exclude
+    public int getWorkmateLikedRestaurantTvColor() {
+        return mWorkmateLikedRestaurantTvColor;
+    }
+
+    @Exclude
+    public void setWorkmateLikedRestaurantTvColor(int workmateLikedRestaurantTvColor) {
+        mWorkmateLikedRestaurantTvColor = workmateLikedRestaurantTvColor;
+    }
+
+    public int compareTo(Workmate workmate) {
+        if(mChosenRestaurantName.isEmpty()){
+            if (workmate.getChosenRestaurantName().isEmpty()){
+                return 0;
+            } else {
+                return 1;
+            }
+        } else if(workmate.getChosenRestaurantName().isEmpty()){
+            return -1;
+        } else {
+            return mChosenRestaurantName.toLowerCase().compareTo(workmate.getChosenRestaurantName().toLowerCase());
+        }
     }
 }

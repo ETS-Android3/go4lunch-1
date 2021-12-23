@@ -1,26 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.MapViewFragment">
+    android:background="@color/white"
+    tools:context=".ui.fragment.mapView.MapViewFragment"
+    android:id="@+id/map_view_fragment_coordinator">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map_view_fragment_map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <Button
+        android:id="@+id/map_view_fragment_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:minHeight="@dimen/map_view_fragment_search_button_min_height"
+        android:layout_marginTop="@dimen/map_view_fragment_search_button_margin"
+        android:alpha="0.0"
+        android:visibility="gone"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/search_this_area"
+        android:textAllCaps="false"/>
+
+    <ProgressBar
+        android:id="@+id/map_view_fragment_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="@dimen/map_view_fragment_progress_bar_margin"
+        android:visibility="gone"
+        android:alpha="0"
+        style="?android:attr/progressBarStyle"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/map_view_fragment_location_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/white"
+        android:layout_margin="@dimen/map_view_fragment_location_btn_margin"
+        app:backgroundTint="@color/white"
         android:contentDescription="@string/locate_me"
         android:src="@drawable/ic_locate"
         app:borderWidth="0dp"/>
-
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

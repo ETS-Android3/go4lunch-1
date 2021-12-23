@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.Go4Lunch" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Go4Lunch" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryVariant">@color/dark_orange</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/dark_orange</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-        <!-- STYLE SIGN-IN ACTIVITY -->
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <!-- Splash Screen theme. -->
@@ -23,5 +20,4 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
-
 </resources>
