@@ -10,6 +10,7 @@ import com.camel.go4lunch.mappers.RestaurantToListViewMapper;
 import com.camel.go4lunch.models.OpenPeriod;
 import com.camel.go4lunch.models.Restaurant;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -28,7 +29,7 @@ public class RestaurantToListViewMapperTest {
         RestaurantToListViewMapper mapper = new RestaurantToListViewMapper(new Location(""), R.string.unit_meter_short, Calendar.getInstance());
         List<Restaurant> restaurantList = mapper.apply(restaurantHashMap);
 
-        assertEquals(restaurantHashMap.size(), restaurantList.size());
+        Assert.assertEquals(restaurantHashMap.size(), restaurantList.size());
         assertEquals(restaurantList.get(0).getDistanceTvVisibility(), View.VISIBLE);
     }
 

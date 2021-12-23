@@ -1,5 +1,6 @@
 package com.camel.go4lunch.ui.fragment.listView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,7 @@ public class ListViewPlacesAdapter extends RecyclerView.Adapter<ListViewPlacesAd
             mPlaceListener = placeListener;
         }
 
+        @SuppressLint("WrongConstant")
         public void updateViewHolder(Restaurant restaurant){
             Context context = mBinding.getRoot().getContext();
             mBinding.placeItemNameTv.setText(restaurant.getName());
