@@ -45,7 +45,7 @@ public class PlaceDetailsResultToRestaurantMapperTest {
         PlaceDetailsResults placeDetailsResults = generatePlaceDetailsWithAddressComponent();
         Restaurant restaurant = new Restaurant(placeDetailsResults.getPlaceDetails().getPlaceId());
         PlaceDetailsResultToRestaurantMapper mapper = new PlaceDetailsResultToRestaurantMapper(restaurant);
-        String expectedAddress = "62Bis, Rue des Rosiers";
+        String expectedAddress = "62Bis, avenue des minimes";
 
         restaurant = mapper.apply(placeDetailsResults);
         assertEquals(restaurant.getAddress(), expectedAddress);
@@ -56,7 +56,7 @@ public class PlaceDetailsResultToRestaurantMapperTest {
         PlaceDetailsResults placeDetailsResults = generatePlaceDetailsWithRouteAddressComponent();
         Restaurant restaurant = new Restaurant(placeDetailsResults.getPlaceDetails().getPlaceId());
         PlaceDetailsResultToRestaurantMapper mapper = new PlaceDetailsResultToRestaurantMapper(restaurant);
-        String expectedAddress = "Rue des Rosiers";
+        String expectedAddress = "avenue des minimes";
 
         restaurant = mapper.apply(placeDetailsResults);
         assertEquals(restaurant.getAddress(), expectedAddress);
@@ -67,7 +67,7 @@ public class PlaceDetailsResultToRestaurantMapperTest {
         PlaceDetailsResults placeDetailsResults = generatePlaceDetailsWithVicinity();
         Restaurant restaurant = new Restaurant(placeDetailsResults.getPlaceDetails().getPlaceId());
         PlaceDetailsResultToRestaurantMapper mapper = new PlaceDetailsResultToRestaurantMapper(restaurant);
-        String expectedAddress = "62Bis, Rue des Rosiers";
+        String expectedAddress = "62Bis, avenue des minimes";
 
         restaurant = mapper.apply(placeDetailsResults);
         assertEquals(restaurant.getAddress(), expectedAddress);

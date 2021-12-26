@@ -8,7 +8,7 @@ plugins {
     id 'com.google.firebase.crashlytics'
 }
 
-def mapApiKey = project.properties['AIzaSyD3ckct5YWUdXXCemXYmSDi15z32IrUBu4']
+def mapApiKey = project.properties['AIzaSyDCYOP45HmZNcYL24EThaCJ1CDOutyncMo']
 def geoaapifyApiKey = project.properties['55611429ba174d3c83f963404b7f1368']
 
 android {
@@ -34,8 +34,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField("String", "MAPS_API_KEY", "AIzaSyD3ckct5YWUdXXCemXYmSDi15z32IrUBu4")
-            resValue("string", "maps_api_key", "AIzaSyD3ckct5YWUdXXCemXYmSDi15z32IrUBu4")
+            buildConfigField("String", "MAPS_API_KEY", "AIzaSyDCYOP45HmZNcYL24EThaCJ1CDOutyncMo")
+            resValue("string", "maps_api_key", "AIzaSyDCYOP45HmZNcYL24EThaCJ1CDOutyncMo")
 
             buildConfigField("String", "GEOAPIFY_API_KEY", "\"55611429ba174d3c83f963404b7f1368\"")
         }
