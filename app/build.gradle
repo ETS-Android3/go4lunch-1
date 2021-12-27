@@ -10,7 +10,6 @@ plugins {
 
 def mapApiKey = project.properties['MAPS_API_KEY']
 def geoaapifyApiKey = project.properties['GEOAPIFY_API_KEY']
-//def geoaapifyApiKey = project.properties['55611429ba174d3c83f963404b7f1368']
 
 android {
     compileSdkVersion 31
