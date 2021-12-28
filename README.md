@@ -5,8 +5,6 @@ It is also possible to consult the restaurants selected by colleagues in order t
 
 At noon, a notification is sent to remind you the choice of the restaurant and the people who are coming to eat with you.
 
-Translated with www.DeepL.com/Translator (free version)
-
 This projet uses
 
 - MVVM architecture
