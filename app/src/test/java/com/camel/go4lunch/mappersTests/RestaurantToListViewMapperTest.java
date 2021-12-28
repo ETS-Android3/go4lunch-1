@@ -1,7 +1,5 @@
 package com.camel.go4lunch.mappersTests;
 
-import static org.junit.Assert.assertEquals;
-
 import android.location.Location;
 import android.view.View;
 
@@ -10,12 +8,13 @@ import com.camel.go4lunch.mappers.RestaurantToListViewMapper;
 import com.camel.go4lunch.models.OpenPeriod;
 import com.camel.go4lunch.models.Restaurant;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class RestaurantToListViewMapperTest {
 
@@ -29,7 +28,7 @@ public class RestaurantToListViewMapperTest {
         RestaurantToListViewMapper mapper = new RestaurantToListViewMapper(new Location(""), R.string.unit_meter_short, Calendar.getInstance());
         List<Restaurant> restaurantList = mapper.apply(restaurantHashMap);
 
-        Assert.assertEquals(restaurantHashMap.size(), restaurantList.size());
+        assertEquals(restaurantHashMap.size(), restaurantList.size());
         assertEquals(restaurantList.get(0).getDistanceTvVisibility(), View.VISIBLE);
     }
 
@@ -48,7 +47,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkOpenNowFirstPeriod() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // DECEMBER
         testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 10);
         testDate.set(Calendar.MINUTE, 30);
@@ -67,7 +66,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkOpenNowSecondPeriod() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // DECEMBER
         testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 15);
         testDate.set(Calendar.MINUTE, 30);
@@ -86,7 +85,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkOpenNowThirdPeriod() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 20); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 10);
         testDate.set(Calendar.MINUTE, 30);
@@ -105,8 +104,8 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkCloseSoon(){
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
-        testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
+        testDate.set(Calendar.DAY_OF_MONTH, 28); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 11);
         testDate.set(Calendar.MINUTE, 30);
 
@@ -125,7 +124,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkClosedBeforeTime() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 7);
         testDate.set(Calendar.MINUTE, 30);
@@ -144,7 +143,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkClosedAfterTime() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 20);
         testDate.set(Calendar.MINUTE, 30);
@@ -163,7 +162,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkCloseAtMidnight() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 23);
         testDate.set(Calendar.MINUTE, 30);
@@ -182,7 +181,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkCloseAfterMidnight() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 1);
         testDate.set(Calendar.MINUTE, 30);
@@ -201,7 +200,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_givenCloseAfterMidnightOnlyTheWeekend_checkCloseTimeMondayMorning() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 1);
         testDate.set(Calendar.MINUTE, 30);
@@ -220,7 +219,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_givenCloseAfterMidnightOnlyTheWeekend_checkCloseTimeFridayEvening() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 16); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 22);
         testDate.set(Calendar.MINUTE, 30);
@@ -239,7 +238,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkClosedOnSunday() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 18); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 20);
         testDate.set(Calendar.MINUTE, 30);
@@ -258,7 +257,7 @@ public class RestaurantToListViewMapperTest {
     public void test_determineOpening_checkClosedBetweenPeriods() {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, 2021);
-        testDate.set(Calendar.MONTH, Calendar.APRIL); // April
+        testDate.set(Calendar.MONTH, Calendar.DECEMBER); // April
         testDate.set(Calendar.DAY_OF_MONTH, 19); // Monday
         testDate.set(Calendar.HOUR_OF_DAY, 12);
         testDate.set(Calendar.MINUTE, 30);

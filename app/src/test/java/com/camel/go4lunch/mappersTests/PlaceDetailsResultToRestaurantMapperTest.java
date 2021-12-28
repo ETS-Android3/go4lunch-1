@@ -1,9 +1,5 @@
 package com.camel.go4lunch.mappersTests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import android.view.View;
 
 import com.camel.go4lunch.mappers.PlaceDetailsResultToRestaurantMapper;
@@ -26,6 +22,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class PlaceDetailsResultToRestaurantMapperTest {
 
     @Test
@@ -45,7 +45,7 @@ public class PlaceDetailsResultToRestaurantMapperTest {
         PlaceDetailsResults placeDetailsResults = generatePlaceDetailsWithAddressComponent();
         Restaurant restaurant = new Restaurant(placeDetailsResults.getPlaceDetails().getPlaceId());
         PlaceDetailsResultToRestaurantMapper mapper = new PlaceDetailsResultToRestaurantMapper(restaurant);
-        String expectedAddress = "62Bis, avenue des minimes";
+        String expectedAddress = "62Bis, Rue des Rosiers";
 
         restaurant = mapper.apply(placeDetailsResults);
         assertEquals(restaurant.getAddress(), expectedAddress);
@@ -56,7 +56,7 @@ public class PlaceDetailsResultToRestaurantMapperTest {
         PlaceDetailsResults placeDetailsResults = generatePlaceDetailsWithRouteAddressComponent();
         Restaurant restaurant = new Restaurant(placeDetailsResults.getPlaceDetails().getPlaceId());
         PlaceDetailsResultToRestaurantMapper mapper = new PlaceDetailsResultToRestaurantMapper(restaurant);
-        String expectedAddress = "avenue des minimes";
+        String expectedAddress = "Rue des Rosiers";
 
         restaurant = mapper.apply(placeDetailsResults);
         assertEquals(restaurant.getAddress(), expectedAddress);
@@ -67,7 +67,7 @@ public class PlaceDetailsResultToRestaurantMapperTest {
         PlaceDetailsResults placeDetailsResults = generatePlaceDetailsWithVicinity();
         Restaurant restaurant = new Restaurant(placeDetailsResults.getPlaceDetails().getPlaceId());
         PlaceDetailsResultToRestaurantMapper mapper = new PlaceDetailsResultToRestaurantMapper(restaurant);
-        String expectedAddress = "62Bis, avenue des minimes";
+        String expectedAddress = "62Bis, Rue des Rosiers";
 
         restaurant = mapper.apply(placeDetailsResults);
         assertEquals(restaurant.getAddress(), expectedAddress);

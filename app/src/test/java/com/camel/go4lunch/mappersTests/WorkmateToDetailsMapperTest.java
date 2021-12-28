@@ -1,7 +1,5 @@
 package com.camel.go4lunch.mappersTests;
 
-import static org.junit.Assert.assertEquals;
-
 import com.camel.go4lunch.R;
 import com.camel.go4lunch.mappers.WorkmateToDetailsMapper;
 import com.camel.go4lunch.models.Workmate;
@@ -9,6 +7,8 @@ import com.camel.go4lunch.models.Workmate;
 import org.junit.Test;
 
 import java.util.Calendar;
+
+import static org.junit.Assert.assertEquals;
 
 public class WorkmateToDetailsMapperTest {
 

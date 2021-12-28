@@ -1,7 +1,5 @@
 package com.camel.go4lunch.mappersTests;
 
-import static org.junit.Assert.assertEquals;
-
 import android.view.View;
 
 import com.camel.go4lunch.mappers.WorkmateToWorkmateListViewMapper;
@@ -12,6 +10,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class WorkmateToWorkmateListViewMapperTest {
 

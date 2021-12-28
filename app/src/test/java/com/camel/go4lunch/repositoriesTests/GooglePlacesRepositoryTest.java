@@ -1,21 +1,15 @@
 package com.camel.go4lunch.repositoriesTests;
 
-import static com.camel.go4lunch.mappers.NearbyPlacesResultToRestaurantMapper.OPERATIONAL_BUSINESS_STATUS;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-
 import com.camel.go4lunch.api.PlacesService;
 import com.camel.go4lunch.models.googlePlaceAutocomplete.PlaceAutocomplete;
 import com.camel.go4lunch.models.googlePlaceAutocomplete.Prediction;
 import com.camel.go4lunch.models.googlePlaceDetailsResult.Close;
+import com.camel.go4lunch.models.googlePlaceDetailsResult.PlaceDetailsGeometry;
 import com.camel.go4lunch.models.googlePlaceDetailsResult.Open;
 import com.camel.go4lunch.models.googlePlaceDetailsResult.OpeningHours;
 import com.camel.go4lunch.models.googlePlaceDetailsResult.Period;
 import com.camel.go4lunch.models.googlePlaceDetailsResult.Photo;
 import com.camel.go4lunch.models.googlePlaceDetailsResult.PlaceDetails;
-import com.camel.go4lunch.models.googlePlaceDetailsResult.PlaceDetailsGeometry;
 import com.camel.go4lunch.models.googlePlaceDetailsResult.PlaceDetailsResults;
 import com.camel.go4lunch.models.googlePlaceResult.Location;
 import com.camel.go4lunch.models.googlePlaceResult.PlaceSearch;
@@ -34,6 +28,12 @@ import java.util.Calendar;
 import java.util.List;
 
 import io.reactivex.Observable;
+
+import static com.camel.go4lunch.mappers.NearbyPlacesResultToRestaurantMapper.OPERATIONAL_BUSINESS_STATUS;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 public class GooglePlacesRepositoryTest {
 

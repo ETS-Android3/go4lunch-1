@@ -53,8 +53,8 @@ public class RestaurantRepositoryTest {
         mRestaurantRepository.addNewRestaurant(restaurant);
 
         mRestaurantRepository.isRestaurantPresent(restaurant.getUId())
-            .test()
-            .assertValue(true);
+                .test()
+                .assertValue(true);
 
     }
 

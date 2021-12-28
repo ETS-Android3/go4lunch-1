@@ -1,8 +1,5 @@
 package com.camel.go4lunch.viewModelsTests;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import com.camel.go4lunch.models.Restaurant;
@@ -18,6 +15,10 @@ import org.junit.Test;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ListViewViewModelTest {
     private final RestaurantUseCase mRestaurantUseCase = mock(RestaurantUseCase.class);

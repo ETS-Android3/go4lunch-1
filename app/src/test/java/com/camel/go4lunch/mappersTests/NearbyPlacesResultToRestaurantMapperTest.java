@@ -1,8 +1,5 @@
 package com.camel.go4lunch.mappersTests;
 
-import static com.camel.go4lunch.mappers.NearbyPlacesResultToRestaurantMapper.OPERATIONAL_BUSINESS_STATUS;
-import static org.junit.Assert.assertEquals;
-
 import com.camel.go4lunch.mappers.NearbyPlacesResultToRestaurantMapper;
 import com.camel.go4lunch.models.Restaurant;
 import com.camel.go4lunch.models.googlePlaceResult.PlaceSearch;
@@ -12,6 +9,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.camel.go4lunch.mappers.NearbyPlacesResultToRestaurantMapper.OPERATIONAL_BUSINESS_STATUS;
+
+import static org.junit.Assert.assertEquals;
 
 public class NearbyPlacesResultToRestaurantMapperTest {
 

@@ -1,7 +1,5 @@
 package com.camel.go4lunch.mappersTests;
 
-import static org.junit.Assert.assertEquals;
-
 import com.camel.go4lunch.R;
 import com.camel.go4lunch.mappers.RestaurantToMapViewMapper;
 import com.camel.go4lunch.models.Restaurant;
@@ -9,6 +7,8 @@ import com.camel.go4lunch.models.Restaurant;
 import org.junit.Test;
 
 import java.util.HashMap;
+
+import static org.junit.Assert.assertEquals;
 
 public class RestaurantToMapViewMapperTest {
 

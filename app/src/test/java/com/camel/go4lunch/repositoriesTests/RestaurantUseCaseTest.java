@@ -1,10 +1,5 @@
 package com.camel.go4lunch.repositoriesTests;
 
-import static com.camel.go4lunch.mappers.NearbyPlacesResultToRestaurantMapper.OPERATIONAL_BUSINESS_STATUS;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.when;
-
 import com.camel.go4lunch.api.PlacesService;
 import com.camel.go4lunch.models.Workmate;
 import com.camel.go4lunch.models.googlePlaceDetailsResult.AddressComponent;
@@ -39,6 +34,11 @@ import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.Observable;
+
+import static com.camel.go4lunch.mappers.NearbyPlacesResultToRestaurantMapper.OPERATIONAL_BUSINESS_STATUS;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 
 public class RestaurantUseCaseTest {
 
@@ -88,8 +88,8 @@ public class RestaurantUseCaseTest {
                 .test()
                 .assertValue(restaurantHashMap ->
                         restaurantHashMap.size() == mFirstPlaceSearchResults.getPlaceSearches().size()
-                        && restaurantHashMap.containsKey(mFirstPlaceId)
-                        && Objects.requireNonNull(restaurantHashMap.get(mSecondPlaceId)).getName().equals(mSecondDetailsResults.getPlaceDetails().getName()));
+                                && restaurantHashMap.containsKey(mFirstPlaceId)
+                                && Objects.requireNonNull(restaurantHashMap.get(mSecondPlaceId)).getName().equals(mSecondDetailsResults.getPlaceDetails().getName()));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class RestaurantUseCaseTest {
                 .test()
                 .assertValue(restaurantHashMap ->
                         restaurantHashMap.size() == mFirstPlaceSearchResults.getPlaceSearches().size() + mSecondPlaceSearchResults.getPlaceSearches().size()
-                && Objects.requireNonNull(restaurantHashMap.get(mThirdPlaceId)).getName().equals(mThirdDetailsResults.getPlaceDetails().getName()));
+                                && Objects.requireNonNull(restaurantHashMap.get(mThirdPlaceId)).getName().equals(mThirdDetailsResults.getPlaceDetails().getName()));
     }
 
     @Test
